@@ -1,25 +1,28 @@
-window.addEventListener('DOMContentLoaded', () => {
-    const menu = document.querySelector('.menu'),
-        menuItem = document.querySelectorAll('.menu_item'),
-        hamburger = document.querySelector('.hamburger'),
-        back = document.querySelector('.back');
+const menu = document.querySelector('.menu'),
+      menuItem = document.querySelectorAll('.menu_item'),
+      hamburger = document.querySelector('.hamburger'),
+      back = document.querySelector('.back');
 
 
-    menuItem.forEach(item => {
-        toggleMenu(item);
+function checkDisplay() {
+    if(window.getComputedStyle(hamburger, null).getPropertyValue("display") == 'block') {
+        hamburger.classList.toggle('hamburger_active');
+        menu.classList.toggle('menu_active');
+        document.body.classList.toggle('overflow');
+        back.classList.toggle('show');
+    }
+}
 
+function toggleMenu(element){
+    element.addEventListener('click', () => {
+        checkDisplay();
     });
 
+}
 
-    function toggleMenu(element){
-        element.addEventListener('click', () => {
-            hamburger.classList.toggle('hamburger_active');
-            menu.classList.toggle('menu_active');
-            back.classList.toggle('show');
-        });
-    }
-
-    toggleMenu(hamburger);
-    toggleMenu(back);
-
+menuItem.forEach(item => {
+    toggleMenu(item);
 });
+
+toggleMenu(hamburger);
+toggleMenu(back);
