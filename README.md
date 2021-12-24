@@ -28,7 +28,7 @@ npm install
 Launching
 
 ```bash
-npm start
+gulp
 ```
 
 <div align="center">
